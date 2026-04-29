@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>書卷謎蹤：秘境典籍 Mystery-Codex</title>
+    <style>
+        :root {
+            --warm-bg: #fff9e6;
+            --dark-bg: #0d0d0d;
+            --sweet-pink: #ff85a1;
+            --horror-red: #8b0000;
+            --text-color: #5a4a42;
+        }
+
+        body, html {
+            margin: 0; padding: 0;
+            font-family: "Microsoft JhengHei", sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--warm-bg);
+            color: var(--text-color);
+            transition: background 1.5s ease, color 1.5s ease;
+            overflow-x: hidden;
+        }
+
+        .section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* 標題區保持粉嫩 */
+        h1 { color: #5a4a42; font-size: 3rem; margin-bottom: 5px; }
+        .heart { color: var(--sweet-pink); }
+
+        .character-map-container {
+            position: relative;
+            width: 90%; max-width: 900px;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 8px solid white;
+        }
+
+        .main-char-img { width: 100%; display: block; transition: 0.6s; }
+        .character-map-container:hover .main-char-img { brightness(0.5); transform: scale(1.02); }
+
+        .hotspot { position: absolute; top: 0; height: 100%; z-index: 5; cursor: pointer; }
+        .char-name {
+            opacity: 0; color: white; font-size: 1.5rem;
+            background: var(--sweet-pink); padding: 10px 25px;
+            border-radius: 30px; transition: 0.4s;
+            transform: translateY(20px);
+        }
+        .hotspot:hover .char-name { opacity: 1; transform: translateY(0); }
+
+        .video-container {
+            width: 90%; max-width: 800px;
+            border-radius: 15px; overflow: hidden;
+            border: 6px solid #fff; transition: 0.8s;
+        }
+
+        /* 黑化控制 */
+        .corrupted { background-color: var(--dark-bg) !important; color: var(--horror-red) !important; }
+        .corrupted .video-container { border-color: var(--horror-red); }
+        
+        .glitch-text {
+            font-size: 4rem; font-weight: bold;
+            animation: glitch 500ms infinite;
+            text-shadow: 2px 2px #ff0000;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            100% { transform: translate(2px, -2px); }
+        }
+
+        .dark-content { opacity: 0; transition: 2s all; }
+        .show-msg { opacity: 1; }
+
+    </style>
+</head>
+<body>
+
+    <div class="section">
+        <h1>書卷謎蹤：秘境典籍</h1>
+        <h3 style="color: #8b7355;">Mystery-Codex</h3>
+        <p style="font-size: 1.5rem; margin-top: 20px;">四位少女在學院的冒險故事，全程讓你心動不已 <span class="heart">♡</span></p>
+        <p>藉由骰子決定對戰勝負，部分事件卡也會需要骰子點數決定你的狀態喔！</p>
+    </div>
+
+    <div class="section" style="background: rgba(255,255,255,0.3);">
+        <h2>登場少女</h2>
+        <div class="character-map-container">
+            <img src="1000012960.jpg" alt="四位少女" class="main-char-img">
+            <div class="hotspot" style="left: 0%; width: 25%; display: flex; align-items: center; justify-content: center;"><span class="char-name">沈墨煙</span></div>
+            <div class="hotspot" style="left: 25%; width: 25%; display: flex; align-items: center; justify-content: center;"><span class="char-name">艾莉</span></div>
+            <div class="hotspot" style="left: 50%; width: 25%; display: flex; align-items: center; justify-content: center;"><span class="char-name">希薇</span></div>
+            <div class="hotspot" style="left: 75%; width: 25%; display: flex; align-items: center; justify-content: center;"><span class="char-name">古韻涵</span></div>
+        </div>
+    </div>
+
+    <div class="section" id="video-section">
+        <h2>前導預告片</h2>
+        <div class="video-container">
+            <iframe width="100%" height="100%" 
+                src="https://www.youtube.com/embed/wFXF1R04SnA" 
+                title="YouTube video player" frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen style="aspect-ratio: 16 / 9;">
+            </iframe>
+        </div>
+    </div>
+
+    <div class="section" id="horror-section">
+        <div class="dark-content" id="final-msg">
+            <p style="font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 30px;">當你翻開這頁，契約便已成立。</p>
+            <h2 class="glitch-text">所 謂 的 女 神</h2>
+            <p style="font-size: 1.5rem; letter-spacing: 5px;">輪 迴 再 輪 迴 ... 絕 望 痛 苦 的 循 環</p>
+            <div style="margin-top: 50px; border: 1px solid red; padding: 20px; cursor: pointer;" onclick="alert('妳逃不掉的。')">
+                <span>[ 接受命運 ]</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const videoSection = document.getElementById('video-section');
+            const finalMsg = document.getElementById('final-msg');
+            const scrollPos = window.scrollY;
+
+            if (scrollPos > videoSection.offsetTop - 100) {
+                document.body.classList.add('corrupted');
+                finalMsg.classList.add('show-msg');
+            } else {
+                document.body.classList.remove('corrupted');
+                finalMsg.classList.remove('show-msg');
+            }
+        });
+    </script>
+</body>
+</html>
